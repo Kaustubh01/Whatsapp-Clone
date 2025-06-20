@@ -40,4 +40,15 @@ public class UserMapper {
         return user;
     }
 
+    public UserResponse toUserResponse(User user){
+        return UserResponse.builder()
+        .id(user.getId())
+        .firstname(user.getFirstName())
+        .lastname(user.getLastName())
+        .email(user.getEmail())
+        .lastSeen(user.getLastSeen())
+        .isOnline(user.isUserOnline())
+        .build();
+    }
+
 }

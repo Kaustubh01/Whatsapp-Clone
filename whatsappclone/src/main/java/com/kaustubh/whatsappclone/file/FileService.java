@@ -3,6 +3,8 @@ package com.kaustubh.whatsappclone.file;
 import static java.io.File.separator;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -49,11 +51,19 @@ public class FileService {
         String targetFilePath = finalUploadPath + separator + System.currentTimeMillis() + fileExtension;
         Path targetPath = Paths.get(targetFilePath);
 
+        try{
+            Files.write(targetPath, sourceFile.getBytes());
+            log.info("File Saved to {}", targetPath);
+
+            return targetFilePath;
+        }
+        catch(IOException e){
+            log.error("file not saved", e);
+        }
         return null;
     }
 
     private String getFileExtension(String filename) {
-        // TODO Auto-generated method stub
         if (filename == null || filename.isEmpty())
             return "";
         int lastDotIndex = filename.indexOf('.');
