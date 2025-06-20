@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kaustubh.whatsappclone.common.StringResponse;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/api/v1/chats")
 @RequiredArgsConstructor
+@Tag(name = "Chat")
 public class ChatController {
     private final ChatService chatService;
 
